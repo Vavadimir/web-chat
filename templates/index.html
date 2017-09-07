@@ -1,0 +1,17 @@
+$def with (name)
+
+$if name:
+    <em> HELLO </em>, $name!
+	<h1>Fill Out This Form</h1>
+
+	<form action="/comments" method="POST">
+    		Your comment: <input type="text" name="comments">
+    		<br/>
+    		<input type="submit">
+	</form>
+$else:
+   	<form action="/comments" method="POST">
+    		Your comment: <input type="text" name="comments">
+    		<br/>
+    		<input type="submit">
+	</form>
