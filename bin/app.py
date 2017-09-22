@@ -18,22 +18,28 @@ render = web.template.render('templates/', base="layout")
 
 
 class Index(object):
+	"""Create new session and start page"""
+
     name = ''
     def GET(self):
-	if web.config.get('_session') is None:
-		web.config._session = session
-		return render.hello_form()
-	else:
-		return render.comms()
+       if web.config.get('_session') is None:
+          web.config._session = session
+	      return render.hello_form()
+       else:
+          return render.comms()
 
 
 class reset(object):
+    """Logout from profile"""
+
     def POST(self):
 	session.kill()
 	web.config._session = None
 	return render.hello_form()
 
 class Comms(object):
+    """Authentication and registration"""
+
     def POST(self):
 	conn = sqlite3.connect('database/users.db')
 	c = conn.cursor()
@@ -56,6 +62,8 @@ class Comms(object):
 		return render.comms()
 
 class chat(object):
+    """Get the comments or add the comments"""
+
     def GET(self):
 	cmnts = []
 	conn = sqlite3.connect('database/users.db')
